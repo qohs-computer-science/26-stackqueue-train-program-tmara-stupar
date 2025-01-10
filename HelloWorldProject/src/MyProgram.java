@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.Stack;
 import java.util.Queue;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MyProgram {
@@ -27,5 +28,21 @@ public class MyProgram {
 		{
 			System.out.println(e.getMessage());
 		}
+		ArrayList <Train> track0 = new ArrayList <Train> ();
+		while(name.equals("END") == false)
+		{
+			if (name.indexOf("CAR")==1){
+				track0.add(new Train(name, x.nextLine(), x.nextLine(), x.nextLine(), x.nextLine(), x.nextLine()));
+				name = x.nextLine();
+
+			}
+			if (name.indexOf("ENG")==1){
+				track0.add(new Train(name, x.nextLine()));
+				name = x.nextLine();
+			}
+		}
+		for(Train temp: track0)
+			if(temp)
+
 	}
 }
