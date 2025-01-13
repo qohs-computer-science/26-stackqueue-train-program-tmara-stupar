@@ -14,7 +14,18 @@ public class Train {
     public String getName(){
         return name;
     }
-
+    public String getProduct(){
+        return product;
+    }
+    public int getMiles(){
+        return miles;
+    }
+    public String getDest(){
+        return destination;
+    }
+    public int getWeight(){
+        return weight;
+    }
     
 
 
@@ -25,6 +36,6 @@ public class Train {
 
   public String toString() 
   {
-    return name +", "+ product +", "+ origin +", "+ destination +", "+ weight +", "+ miles;
+    return name + " containing "+ product;
   }
 }//end class
