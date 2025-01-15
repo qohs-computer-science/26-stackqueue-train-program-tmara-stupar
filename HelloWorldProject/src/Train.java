@@ -36,6 +36,6 @@ public class Train {
 
   public String toString() 
   {
-    return name + " containing "+ product;
+    return name + " containing "+ product + " to " + destination +" miles: " +miles;
   }
 }//end class

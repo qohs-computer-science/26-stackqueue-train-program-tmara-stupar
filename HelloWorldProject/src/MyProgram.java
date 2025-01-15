@@ -31,7 +31,7 @@ public class MyProgram {
 		}
 
 		//TRACK0
-		ArrayList <Train> track0 = new ArrayList <Train> ();
+		Queue <Train> track0 = new LinkedList <Train> ();
 		while(name.equals("END") == false)
 		{
 			if (name.indexOf("CAR")>=0){
@@ -45,73 +45,79 @@ public class MyProgram {
 				name = x.nextLine();
 			}
 		}
+		//while (!track0.isEmpty())
+		//System.out.println(track0.remove());
+
 
 		//TRACK1
-		ArrayList <Train> track1 = new ArrayList <Train> ();
-		for(Train temp: track0)
-			if(temp.getMiles()>700)
-			{
-				track1.add(temp);
-				track0.remove(temp);
-			}//if
-
-		//TRENTON
-		ArrayList <Train> trackA = new ArrayList <Train> ();
+		Queue <Train> track1 = new LinkedList <Train> ();
+		Queue <Train> trackA = new LinkedList <Train> ();
 		int trentonWeight = 0;
-		for(Train temp: track0)
+		while (!track0.isEmpty())
 		{
-			if (trentonWeight < limitTrackA)
+			Train current = track0.remove();
+			if(current.getMiles()>700)
 			{
-				if(temp.getDest().equals("Trenton") && temp.getName().indexOf("CAR")>=0)
+				System.out.println(current);
+				track1.add(current);
+			}//if
+/* */		//TRENTON
+			if(current.getDest().equals("Trenton")) 
+			{
+	
+			// if it going to trenton
+				if(current.getName().indexOf("ENG")>=0)
 				{
-					trackA.add(temp);
-					track0.remove(temp);
-					trentonWeight += temp.getWeight();
-				}//if
-				else if(temp.getDest().equals("Trenton") && temp.getName().indexOf("ENG")>=0)
-				{
-					System.out.println(temp.getName()+ " leaving for Trenton with the following cars:");
-					for(Train tempA: trackA)
+					System.out.println(current.getName()+ " leaving for Trenton with the following cars:");
+					while (!trackA.isEmpty())
 					{
-						System.out.println(tempA.toString());
-						trackA.remove(tempA);
+						System.out.println(trackA.peek().toString());
+						trackA.remove();
 					}
 				}
-
-			}//if
-			else
-			{
-				System.out.println("ENG00000 leaving for Trenton with the following cars:");
-				for(Train tempA: trackA)
-				{
-					System.out.println(tempA.toString());
-					trackA.remove(tempA);
-				}
-			}//else
-			
+				// if its a CAR -- matches else				     
+				else if (trentonWeight+ current.getWeight()< limitTrackA) // if destination is Trenton and it is a car not an engine
+					{
+						if(current.getDest().equals("Trenton") && current.getName().indexOf("CAR")>=0)
+						{
+							trentonWeight += current.getWeight();
+							trackA.add(track0.remove());
+						}//if
+					}//if
+				else
+					{
+						System.out.println("ENG00000 leaving for Trenton with the following cars:");
+						while (!trackA.isEmpty())
+						{
+							System.out.println(trackA.peek().toString());
+							trackA.remove();
+						}
+						// add the car to the now empty track
+					}//else
+				} // end if Trenton
+			*/
 		}//for
 
 
 		//CHARLOTTE
-		ArrayList <Train> trackB = new ArrayList <Train> ();
+		Queue <Train> trackB = new LinkedList <Train> ();
 		int charlotteWeight = 0;
-		for(Train temp: track0)
+		while (!track0.isEmpty())
 		{
 			if (charlotteWeight < limitTrackB)
 			{
-				if(temp.getDest().equals("Charlotte") && temp.getName().indexOf("CAR")>=0)
+				if(current.getDest().equals("Charlotte") && current.getName().indexOf("CAR")>=0)
 				{
-					trackB.add(temp);
-					track0.remove(temp);
-					charlotteWeight += temp.getWeight();
+					charlotteWeight += current.getWeight();
+					trackB.add(track0.remove());
 				}//if
-				else if(temp.getDest().equals("Charlotte") && temp.getName().indexOf("ENG")>=0)
+				else if(current.getDest().equals("Charlotte") && current.getName().indexOf("ENG")>=0)
 				{
-					System.out.println(temp.getName()+ " leaving for Charlotte with the following cars:");
-					for(Train tempB: trackB)
+					System.out.println(current.getName()+ " leaving for Charlotte with the following cars:");
+					while (!trackB.isEmpty())
 					{
-						System.out.println(tempB.toString());
-						trackB.remove(tempB);
+						System.out.println(trackB.peek().toString());
+						trackB.remove();
 					}
 				}
 
@@ -119,18 +125,14 @@ public class MyProgram {
 			else
 			{
 				System.out.println("ENG00000 leaving for Charlotte with the following cars:");
-				for(Train tempB: trackB)
+				while (!trackB.isEmpty())
 				{
-					System.out.println(tempB.toString());
-					trackB.remove(tempB);
+					System.out.println(trackB.peek().toString());
+					trackB.remove();
 				}
 			}//else
 			
 		}//for
-
-
-
-
 
 
 	}//main
