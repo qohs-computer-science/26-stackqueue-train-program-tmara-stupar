@@ -52,16 +52,24 @@ public class MyProgram {
 		//TRACK1
 		Queue <Train> track1 = new LinkedList <Train> ();
 		Queue <Train> trackA = new LinkedList <Train> ();
+		Queue <Train> trackB = new LinkedList <Train> ();
+		Queue <Train> trackC = new LinkedList <Train> ();
+		Queue <Train> trackD = new LinkedList <Train> ();
+
+
 		int trentonWeight = 0;
+		int charlotteWeight = 0;
+		int baltimoreWeight = 0;
+
 		while (!track0.isEmpty())
 		{
 			Train current = track0.remove();
 			if(current.getMiles()>700)
 			{
-				System.out.println(current);
 				track1.add(current);
 			}//if
-/* */		//TRENTON
+
+/*TRENTON*/	
 			if(current.getDest().equals("Trenton")) 
 			{
 	
@@ -71,8 +79,7 @@ public class MyProgram {
 					System.out.println(current.getName()+ " leaving for Trenton with the following cars:");
 					while (!trackA.isEmpty())
 					{
-						System.out.println(trackA.peek().toString());
-						trackA.remove();
+						System.out.println(trackA.remove());
 					}
 				}
 				// if its a CAR -- matches else				     
@@ -81,58 +88,44 @@ public class MyProgram {
 						if(current.getDest().equals("Trenton") && current.getName().indexOf("CAR")>=0)
 						{
 							trentonWeight += current.getWeight();
-							trackA.add(track0.remove());
+							trackA.add(current);
 						}//if
 					}//if
 				else
 					{
-						System.out.println("ENG00000 leaving for Trenton with the following cars:");
-						while (!trackA.isEmpty())
+						if(current.getDest().equals("Trenton") && current.getName().indexOf("CAR")>=0)
 						{
-							System.out.println(trackA.peek().toString());
-							trackA.remove();
-						}
+							System.out.println("ENG00000 leaving for Trenton with the following cars:");
+							while (!trackA.isEmpty())
+							{
+								System.out.println(trackA.remove());
+							}
+							trentonWeight += current.getWeight();
+							trackA.add(current);
+						}//if
+						
+
+
 						// add the car to the now empty track
 					}//else
-				} // end if Trenton
-			*/
-		}//for
-
-
-		//CHARLOTTE
-		Queue <Train> trackB = new LinkedList <Train> ();
-		int charlotteWeight = 0;
-		while (!track0.isEmpty())
-		{
-			if (charlotteWeight < limitTrackB)
-			{
-				if(current.getDest().equals("Charlotte") && current.getName().indexOf("CAR")>=0)
-				{
-					charlotteWeight += current.getWeight();
-					trackB.add(track0.remove());
-				}//if
-				else if(current.getDest().equals("Charlotte") && current.getName().indexOf("ENG")>=0)
-				{
-					System.out.println(current.getName()+ " leaving for Charlotte with the following cars:");
-					while (!trackB.isEmpty())
-					{
-						System.out.println(trackB.peek().toString());
-						trackB.remove();
-					}
-				}
-
-			}//if
-			else
-			{
-				System.out.println("ENG00000 leaving for Charlotte with the following cars:");
-				while (!trackB.isEmpty())
-				{
-					System.out.println(trackB.peek().toString());
-					trackB.remove();
-				}
-			}//else
+				} // end if TRENTON
 			
-		}//for
+/*CHARLOTTE*/	
+			
+
+
+
+
+
+
+
+
+
+		}//while
+
+		
+
+
 
 
 	}//main
