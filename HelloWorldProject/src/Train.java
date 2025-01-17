@@ -26,6 +26,9 @@ public class Train {
     public int getWeight(){
         return weight;
     }
+    public void setMiles(int m){
+        miles = m;
+    }
     
 
 
@@ -36,6 +39,6 @@ public class Train {
 
   public String toString() 
   {
-    return name + " containing "+ product + " to " + destination +" miles: " +miles;
+    return name + " containing "+ product;
   }
 }//end class
