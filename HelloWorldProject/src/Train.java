@@ -32,13 +32,8 @@ public class Train {
     
 
 
-
-
-
-
-
-  public String toString() 
-  {
-    return name + " containing "+ product;
-  }
+    public String toString() 
+    {
+        return name + " containing "+ product;
+    }
 }//end class

@@ -1,8 +1,8 @@
 /*
- * TODO: Name
- * TODO: Date
- * TODO: Class Period
- * TODO: Program Description
+ * TODO: Tamara Stupar
+ * TODO: 1/17
+ * TODO: 7
+ * TODO: stacks and queues train program
  */
 import java.util.Scanner;
 import java.io.File;
@@ -296,7 +296,7 @@ public class MyProgram {
 			{
 				Train current = trackD.pop(); 
 				System.out.println(current + " to " + current.getDest());
-			}
+			}//while
 
 
 	}//main
